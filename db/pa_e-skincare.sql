@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.11
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2017 at 01:22 AM
--- Server version: 5.6.24
--- PHP Version: 5.6.8
+-- Generation Time: Jul 21, 2017 at 03:56 PM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 7.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `pa_e-skincare`
@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `detail_pemesanan`
 --
 
-CREATE TABLE IF NOT EXISTS `detail_pemesanan` (
+CREATE TABLE `detail_pemesanan` (
   `id_pemesanan` int(11) NOT NULL,
   `kd_produk` char(11) NOT NULL,
   `nama_produk` varchar(50) NOT NULL,
@@ -43,7 +43,22 @@ INSERT INTO `detail_pemesanan` (`id_pemesanan`, `kd_produk`, `nama_produk`, `jml
 (1, 'P003', 'Passion Flower Body Spray 100ml', 2, 50000),
 (1, 'P005', 'Perfecting Skin Tint', 1, 67000),
 (1, 'P009', 'Testing Aja', 1, 45000),
-(2, 'P008', 'Jaksdfoj', 1, 9000);
+(2, 'P008', 'Jaksdfoj', 1, 9000),
+(3, 'P009', 'Testing Aja', 1, 45000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `forum_konsultasi`
+--
+
+CREATE TABLE `forum_konsultasi` (
+  `id_forum` int(11) NOT NULL,
+  `no_konsultasi` int(11) NOT NULL,
+  `tgl_post` datetime NOT NULL,
+  `komentar` text NOT NULL,
+  `id_user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -51,10 +66,10 @@ INSERT INTO `detail_pemesanan` (`id_pemesanan`, `kd_produk`, `nama_produk`, `jml
 -- Table structure for table `jasa_pengiriman`
 --
 
-CREATE TABLE IF NOT EXISTS `jasa_pengiriman` (
+CREATE TABLE `jasa_pengiriman` (
   `id_jasa_pengiriman` int(11) NOT NULL,
   `nama_jasa_pengiriman` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `jasa_pengiriman`
@@ -72,10 +87,10 @@ INSERT INTO `jasa_pengiriman` (`id_jasa_pengiriman`, `nama_jasa_pengiriman`) VAL
 -- Table structure for table `jenis_produk`
 --
 
-CREATE TABLE IF NOT EXISTS `jenis_produk` (
+CREATE TABLE `jenis_produk` (
   `id_jenis_produk` int(11) NOT NULL,
   `nama_jenis_produk` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `jenis_produk`
@@ -92,7 +107,7 @@ INSERT INTO `jenis_produk` (`id_jenis_produk`, `nama_jenis_produk`) VALUES
 -- Table structure for table `konfirmasi_pembayaran`
 --
 
-CREATE TABLE IF NOT EXISTS `konfirmasi_pembayaran` (
+CREATE TABLE `konfirmasi_pembayaran` (
   `id_konsumen` char(11) NOT NULL,
   `id_pemesanan` char(11) NOT NULL,
   `atas_nama` varchar(50) NOT NULL,
@@ -117,12 +132,21 @@ INSERT INTO `konfirmasi_pembayaran` (`id_konsumen`, `id_pemesanan`, `atas_nama`,
 -- Table structure for table `konsultasi`
 --
 
-CREATE TABLE IF NOT EXISTS `konsultasi` (
+CREATE TABLE `konsultasi` (
   `no_konsultasi` int(11) NOT NULL,
-  `tgl_konsultasi` int(11) NOT NULL,
+  `tgl_konsultasi` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `diagnosa` text NOT NULL,
   `id_konsumen` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `konsultasi`
+--
+
+INSERT INTO `konsultasi` (`no_konsultasi`, `tgl_konsultasi`, `diagnosa`, `id_konsumen`) VALUES
+(1, '0000-00-00 00:00:00', 'test', 1),
+(2, '2017-07-21 07:57:32', 'coba lagi', 1),
+(3, '2017-07-21 08:56:01', 'zczc', 1);
 
 -- --------------------------------------------------------
 
@@ -130,12 +154,12 @@ CREATE TABLE IF NOT EXISTS `konsultasi` (
 -- Table structure for table `paket_pengiriman`
 --
 
-CREATE TABLE IF NOT EXISTS `paket_pengiriman` (
+CREATE TABLE `paket_pengiriman` (
   `id_paket_pengiriman` int(11) NOT NULL,
   `paket_pengiriman` varchar(100) NOT NULL,
   `harga` int(11) NOT NULL,
   `id_jasa_pengiriman` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `paket_pengiriman`
@@ -152,7 +176,7 @@ INSERT INTO `paket_pengiriman` (`id_paket_pengiriman`, `paket_pengiriman`, `harg
 -- Table structure for table `pemesanan`
 --
 
-CREATE TABLE IF NOT EXISTS `pemesanan` (
+CREATE TABLE `pemesanan` (
   `id_pemesanan` int(11) NOT NULL,
   `id_konsumen` int(11) NOT NULL,
   `paket_pengiriman` int(11) NOT NULL,
@@ -160,7 +184,7 @@ CREATE TABLE IF NOT EXISTS `pemesanan` (
   `total_biaya` int(11) NOT NULL,
   `status_pembayaran` varchar(50) NOT NULL,
   `tanggal_pemesanan` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pemesanan`
@@ -168,7 +192,8 @@ CREATE TABLE IF NOT EXISTS `pemesanan` (
 
 INSERT INTO `pemesanan` (`id_pemesanan`, `id_konsumen`, `paket_pengiriman`, `ongkir`, `total_biaya`, `status_pembayaran`, `tanggal_pemesanan`) VALUES
 (1, 2, 3, 20000, 262000, 'Diterima', '2017-05-18 09:30:25'),
-(2, 6, 3, 20000, 29000, 'Belum dibayar', '2017-05-18 23:27:18');
+(2, 6, 3, 20000, 29000, 'Belum dibayar', '2017-05-18 23:27:18'),
+(3, 1, 3, 20000, 65000, 'Belum dibayar', '2017-07-21 11:22:06');
 
 -- --------------------------------------------------------
 
@@ -176,7 +201,7 @@ INSERT INTO `pemesanan` (`id_pemesanan`, `id_konsumen`, `paket_pengiriman`, `ong
 -- Table structure for table `pengguna`
 --
 
-CREATE TABLE IF NOT EXISTS `pengguna` (
+CREATE TABLE `pengguna` (
   `id_pengguna` int(11) NOT NULL,
   `username` varchar(25) NOT NULL,
   `password` varchar(50) NOT NULL,
@@ -187,7 +212,7 @@ CREATE TABLE IF NOT EXISTS `pengguna` (
   `no_hp` varchar(13) NOT NULL,
   `status` int(11) NOT NULL,
   `grup` varchar(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pengguna`
@@ -207,7 +232,7 @@ INSERT INTO `pengguna` (`id_pengguna`, `username`, `password`, `email`, `nama_le
 -- Table structure for table `produk`
 --
 
-CREATE TABLE IF NOT EXISTS `produk` (
+CREATE TABLE `produk` (
   `kd_produk` char(11) NOT NULL,
   `nama_produk` varchar(50) NOT NULL,
   `id_jenis_produk` int(11) NOT NULL,
@@ -243,6 +268,12 @@ INSERT INTO `produk` (`kd_produk`, `nama_produk`, `id_jenis_produk`, `satuan`, `
 --
 ALTER TABLE `detail_pemesanan`
   ADD PRIMARY KEY (`id_pemesanan`,`kd_produk`);
+
+--
+-- Indexes for table `forum_konsultasi`
+--
+ALTER TABLE `forum_konsultasi`
+  ADD PRIMARY KEY (`id_forum`);
 
 --
 -- Indexes for table `jasa_pengiriman`
@@ -297,30 +328,40 @@ ALTER TABLE `produk`
 --
 
 --
+-- AUTO_INCREMENT for table `forum_konsultasi`
+--
+ALTER TABLE `forum_konsultasi`
+  MODIFY `id_forum` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `jasa_pengiriman`
 --
 ALTER TABLE `jasa_pengiriman`
-  MODIFY `id_jasa_pengiriman` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id_jasa_pengiriman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `jenis_produk`
 --
 ALTER TABLE `jenis_produk`
-  MODIFY `id_jenis_produk` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id_jenis_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `konsultasi`
+--
+ALTER TABLE `konsultasi`
+  MODIFY `no_konsultasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `paket_pengiriman`
 --
 ALTER TABLE `paket_pengiriman`
-  MODIFY `id_paket_pengiriman` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id_paket_pengiriman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  MODIFY `id_pemesanan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
