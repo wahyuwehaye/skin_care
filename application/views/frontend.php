@@ -69,7 +69,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<ul class="memenu skyblue">
 					<li class="<?php echo ($page == 'beranda') ? 'active' : 'grid'; ?>"><a href="<?php echo base_url() ?>beranda">Beranda</a></li>
 					<li class="<?php echo ($page == 'katalog_produk') ? 'active' : 'grid'; ?>"><a href="<?php echo base_url() ?>katalog_produk">Produk</a></li>
-					<li class="<?php echo ($page == 'konsultasi') ? 'active' : 'grid'; ?>"><a href="#">Konsultasi</a></li>
+					<li class="<?php echo ($page == 'konsultasi') ? 'active' : 'grid'; ?>"><a href="<?php echo base_url() ?>konsultasi"">Konsultasi</a></li>
 					<li class="<?php echo ($page == 'tentang_kami') ? 'active' : 'grid'; ?>"><a href="#">Tentang Kami</a></li>
 					<li class="<?php echo ($page == 'pemesanan') ? 'active' : 'grid'; ?>"><a href="<?php echo base_url() ?>pemesanan">Pemesanan</a></li>
 					<?php if(!$this->session->userdata('is_logged_in')){ ?>
