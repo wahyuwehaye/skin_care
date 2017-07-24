@@ -9,6 +9,7 @@ class Konsultasi_m extends CI_Model
     // if($this->session->userdata('grup') == 'konsumen'){
     //   $this->db->where('no_konsultasi', $this->session->userdata('id_pengguna')); 
     // }
+    $this->db->order_by('no_konsultasi','DESC');
     $query = $this->db->get();
     $result= $query->result_array();
 

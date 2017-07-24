@@ -11,7 +11,7 @@
 	 <div class="container">
 	 <h3>Konsultasi dengan Dokter</h3>
 	 <div class="box-tools pull-right">
-	 	<!-- <?php
+	 	<?php
 	 		if($this->session->userdata('grup') == 'dokter'){
 	 			?>
 	 				<button disabled class="btn btn-success bg-olive btn-xs pull-right" style="margin-top: 3px; margin-right:5px;"><i class="fa fa-plus"></i> Tambah Konsultasi</button>
@@ -21,7 +21,7 @@
 	 				<button onclick="formkonsultasi(event)" class="btn btn-success bg-olive btn-xs pull-right" style="margin-top: 3px; margin-right:5px;"><i class="fa fa-plus"></i> Tambah Konsultasi</button>
 	 			<?php
 	 		}
-	 	?> -->
+	 	?>
 	 </div>
 	<div>
 	    <?php $this->load->view('notice'); ?>
