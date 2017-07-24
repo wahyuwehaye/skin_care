@@ -73,7 +73,11 @@ class Admin extends CI_Controller {
 
 		if($_POST){
 			if($this->_cek_login()){
-				redirect('admin');
+				if($this->session->userdata('grup') == 'dokter'){
+			      redirect('dokter');
+			    }else{
+				  redirect('admin');
+			    }
 			}else{
 				$data['messages']['error'] = 'Gagal Login';
 			}

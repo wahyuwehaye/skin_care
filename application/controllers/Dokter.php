@@ -1,47 +1,47 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Konsultasi extends CI_Controller {
+class Dokter extends CI_Controller {
 
 	public function __construct()
   {
     parent::__construct();
-    $this->load->model('konsultasi_m','',TRUE);
+    $this->load->model('dokter_m','',TRUE);
     $this->load->library('cart');
   }
 
   public function index(){
     if($this->session->userdata('is_logged_in')){
-      $data['konsultasi']['entries'] = $this->konsultasi_m->get_konsultasi();
+      $data['konsultasi']['entries'] = $this->dokter_m->get_konsultasi();
       $data['page'] = 'konsultasi';
-      $this->template->load('frontend', 'konsultasi', $data);
+      $this->template->load('frontdokter', 'konsultasi', $data);
     }else{
       $this->session->set_flashdata('error', 'Anda harus login terlebih dahulu, jika belum mempunyai akun silahkan daftar pada form registrasi');
-      redirect('login?redirect=konsultasi');
+      redirect('login?redirect=dokter');
     }
   }
 
   public function forum($no_konsultasi){
   	if($this->session->userdata('is_logged_in')){
-      $data['konsultasi'] = $this->konsultasi_m->get_konsultasi_by_id($no_konsultasi);
-      $data['forumkonsultasi']['forumentries'] = $this->konsultasi_m->get_forumkonsultasi();
-      $data['getkonsultasi'] = $this->konsultasi_m->get_konsultasi();
+      $data['konsultasi'] = $this->dokter_m->get_konsultasi_by_id($no_konsultasi);
+      $data['forumkonsultasi']['forumentries'] = $this->dokter_m->get_forumkonsultasi();
+      $data['getkonsultasi'] = $this->dokter_m->get_konsultasi();
       $data['page'] = 'konsultasi';
-      $this->template->load('frontend', 'forum_konsultasi', $data);
+      $this->template->load('frontdokter', 'forum_konsultasi', $data);
     }else{
       $this->session->set_flashdata('error', 'Anda harus login terlebih dahulu, jika belum mempunyai akun silahkan daftar pada form registrasi');
-      redirect('login?redirect=konsultasi');
+      redirect('login?redirect=dokter');
     }
   }
 
   public function formkonsultasi(){
   	if($this->session->userdata('is_logged_in')){
-      $data['konsultasi']['entries'] = $this->konsultasi_m->get_konsultasi();
+      $data['konsultasi']['entries'] = $this->dokter_m->get_konsultasi();
       $data['page'] = 'konsultasi';
-      $this->template->load('frontend', 'formkonsultasi', $data);
+      $this->template->load('frontdokter', 'formkonsultasi', $data);
     }else{
       $this->session->set_flashdata('error', 'Anda harus login terlebih dahulu, jika belum mempunyai akun silahkan daftar pada form registrasi');
-      redirect('login?redirect=konsultasi');
+      redirect('login?redirect=dokter');
     }
   }
 
@@ -53,10 +53,10 @@ class Konsultasi extends CI_Controller {
           'diagnosa' => $this->input->post('diagnosa'),
 	      	'id_konsumen' => $this->session->userdata('id_pengguna'),
 	      	);
-	      $this->konsultasi_m->insert_konsultasi($data);
+	      $this->dokter_m->insert_konsultasi($data);
 	      unset($_SESSION['cart_contents']);
 	      $this->session->set_flashdata('success', 'Konsultasi anda berhasil ditambahkan');
-    		redirect('konsultasi');
+    		redirect('dokter');
 		}else{
 			$this->session->set_flashdata('error', 'Anda harus login terlebih dahulu, jika belum mempunyai akun silahkan daftar pada form registrasi');
 	    redirect('login?redirect=katalog_produk/view_cart');
@@ -71,10 +71,10 @@ class Konsultasi extends CI_Controller {
           'komentar' => $this->input->post('komentar'),
           'id_user' => $this->session->userdata('id_pengguna'),
           );
-        $this->konsultasi_m->insert_forum_konsultasi($data);
+        $this->dokter_m->insert_forum_konsultasi($data);
         unset($_SESSION['cart_contents']);
         $this->session->set_flashdata('success', 'komentar anda berhasil ditambahkan');
-        redirect('konsultasi/forum/'.$id);
+        redirect('dokter/forum/'.$id);
     }else{
       $this->session->set_flashdata('error', 'Anda harus login terlebih dahulu, jika belum mempunyai akun silahkan daftar pada form registrasi');
       redirect('login?redirect=katalog_produk/view_cart');

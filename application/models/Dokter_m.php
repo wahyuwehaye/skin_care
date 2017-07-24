@@ -1,7 +1,7 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Konsultasi_m extends CI_Model 
+class Dokter_m extends CI_Model 
 {	
   public function get_konsultasi(){
     $this->db->select('*');

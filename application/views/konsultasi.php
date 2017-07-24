@@ -1,57 +1,70 @@
 <div class="product-model">	 
 	<div class="container">
 		<ol class="breadcrumb">
-			<li><a href="index.html">Beranda</a></li>
+			<li><a href="<?php echo base_url(); ?>">Beranda</a></li>
 			<li class="active">Konsultasi</li>
 		</ol>
-		<h2>Daftar Konsultasi</h2>
-		<hr>
-		<br>
-		<div class="row">
-			<div class="col-sm-12">
-			<div class="box-tools pull-right">
-			  	<button onclick="formkonsultasi(event)" class="btn btn-success bg-olive btn-xs pull-right" style="margin-top: 3px; margin-right:5px;"><i class="fa fa-plus"></i> Tambah Konsultasi</button>
-		    </div>
-				<div>
-	      	<?php $this->load->view('notice'); ?>
-				</div>
-				<table class="table table-bordered">
-					<thead>
-						<tr>
-							<th>No Konsultasi</th>
-							<th>Tanggal Konsultasi</th>
-							<th>Diagnosa</th>
-							<th>ID Pasien</th>
-							<th>Aksi</th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php 
-						if(count($konsultasi['entries']) > 0) {
-							foreach ($konsultasi['entries'] as $key => $konsultasi) { ?>
-							<tr>
-								<td><?php echo $konsultasi['no_konsultasi'] ?></td>
-								<td><?php echo $konsultasi['tgl_konsultasi'] ?></td>
-								<td><?php echo $konsultasi['diagnosa'] ?></td>
-								<td><?php echo $konsultasi['id_konsumen'] ?></td>
-								<td><a href="<?php echo base_url() ?>konsultasi/forum/<?php echo $konsultasi['no_konsultasi'] ?>">Detail</td>
-							</tr>
-							<?php 
-							} 
-						}else {
-						?>
-						<tr>
-							<td colspan="8" style="text-align: center">Tidak ada konsultasi</td>
-						</tr>
-						<?php } ?>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<br>
-		<br>
   </div>
 </div>
+<!---->
+<div class="offers">
+	 <div class="container">
+	 <h3>Konsultasi dengan Dokter</h3>
+	 <div class="box-tools pull-right">
+	 	<!-- <?php
+	 		if($this->session->userdata('grup') == 'dokter'){
+	 			?>
+	 				<button disabled class="btn btn-success bg-olive btn-xs pull-right" style="margin-top: 3px; margin-right:5px;"><i class="fa fa-plus"></i> Tambah Konsultasi</button>
+	 			<?php
+	 		}else{
+	 			?>
+	 				<button onclick="formkonsultasi(event)" class="btn btn-success bg-olive btn-xs pull-right" style="margin-top: 3px; margin-right:5px;"><i class="fa fa-plus"></i> Tambah Konsultasi</button>
+	 			<?php
+	 		}
+	 	?> -->
+	 </div>
+	<div>
+	    <?php $this->load->view('notice'); ?>
+	</div>
+	 <?php 
+		if(count($konsultasi['entries']) > 0) {
+			foreach ($konsultasi['entries'] as $key => $konsultasi) { ?>
+	 	 <div class="offer-grids">
+		 <div class="col-md-12 grid-left">
+			 <a href="<?php echo base_url() ?>konsultasi/forum/<?php echo $konsultasi['no_konsultasi'] ?>"><div class="offer-grid1">
+				 <div class="col-md-12 about-us">
+					<h3 style="text-align: left;"><?php echo $konsultasi['pertanyaan'] ?></h3>
+					<h5 style="text-align: left;">Posted by <?php echo get_profil_by_array(($konsultasi['id_konsumen']), 'nama_lengkap') ?></h5>
+					<?php $time_get = strtotime($konsultasi['tgl_konsultasi']); ?>
+					<h6 style="text-align: left;"><?php echo time_ago($time_get) ?></h6>
+					</br>
+					<p><?php echo $konsultasi['diagnosa'] ?></p>
+				</div>
+				 <div class="clearfix"></div>
+			 </div></a>
+		 </div>
+		 </div>
+		 <div class="clearfix"></div>
+		 <?php 
+			} 
+		}else {
+		?>
+		<div class="offer-grids">
+		<div class="col-md-12 grid-left">
+			 <a href="#"><div class="offer-grid1">
+				 <div class="col-md-12 about-us">
+					<h3 style="text-align: center;">Tidak ada konsultasi</h3>
+				</div>
+				 <div class="clearfix"></div>
+			 </div></a>
+		 </div>
+		 </div>
+		 <div class="clearfix"></div>
+		<?php } ?>
+	 </div>
+	 </div>
+</div>
+<!---->
 
 <!-- MODALS -->
 <div class="modal fade cust-modal" tabindex="-1" role="dialog" id="myModal">
@@ -65,7 +78,11 @@
       	<div class="modal-body">
 				  
 				  <div class="form-group">
-				    <label>Diagnosa</label>
+				    <label>Pertanyaan</label>
+				    <input class="form-control" type="text" name="pertanyaan" id="pertanyaan" required>
+				  </div>
+				  <div class="form-group">
+				    <label>Keluhan</label>
 				    <textarea rows="10" class="form-control" name="diagnosa" id="diagnosa" required></textarea>
 				  </div>
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 21, 2017 at 03:56 PM
+-- Generation Time: Jul 24, 2017 at 07:40 AM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
@@ -59,6 +59,21 @@ CREATE TABLE `forum_konsultasi` (
   `komentar` text NOT NULL,
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `forum_konsultasi`
+--
+
+INSERT INTO `forum_konsultasi` (`id_forum`, `no_konsultasi`, `tgl_post`, `komentar`, `id_user`) VALUES
+(1, 9, '2017-07-24 06:45:37', 'adada', 1),
+(2, 9, '2017-07-24 06:49:27', 'sdsdc', 1),
+(3, 9, '2017-07-24 06:50:09', 'asas', 1),
+(4, 9, '2017-07-24 06:52:27', 'asasw', 1),
+(5, 9, '2017-07-24 06:52:46', 'asaswcccc', 1),
+(6, 9, '2017-07-24 06:53:12', 'ini baru komentar', 1),
+(7, 9, '2017-07-24 06:56:42', 'a =ku kamu dia', 6),
+(8, 9, '2017-07-24 07:33:25', 'harus sering belajar', 7),
+(9, 10, '2017-07-24 07:35:39', 'ga papa', 7);
 
 -- --------------------------------------------------------
 
@@ -135,6 +150,7 @@ INSERT INTO `konfirmasi_pembayaran` (`id_konsumen`, `id_pemesanan`, `atas_nama`,
 CREATE TABLE `konsultasi` (
   `no_konsultasi` int(11) NOT NULL,
   `tgl_konsultasi` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `pertanyaan` text NOT NULL,
   `diagnosa` text NOT NULL,
   `id_konsumen` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -143,10 +159,10 @@ CREATE TABLE `konsultasi` (
 -- Dumping data for table `konsultasi`
 --
 
-INSERT INTO `konsultasi` (`no_konsultasi`, `tgl_konsultasi`, `diagnosa`, `id_konsumen`) VALUES
-(1, '0000-00-00 00:00:00', 'test', 1),
-(2, '2017-07-21 07:57:32', 'coba lagi', 1),
-(3, '2017-07-21 08:56:01', 'zczc', 1);
+INSERT INTO `konsultasi` (`no_konsultasi`, `tgl_konsultasi`, `pertanyaan`, `diagnosa`, `id_konsumen`) VALUES
+(9, '2017-07-23 20:15:14', 'sa', 'sas', 1),
+(10, '2017-07-23 20:24:41', 'kenapa sih?', 'air itu dingin?', 1),
+(11, '2017-07-23 23:22:01', 'kun anta', 'kaifa haluk', 1);
 
 -- --------------------------------------------------------
 
@@ -224,7 +240,8 @@ INSERT INTO `pengguna` (`id_pengguna`, `username`, `password`, `email`, `nama_le
 (3, 'junaedi@gmail.com', 'cb28e00ef51374b841fb5c189b2b91c9', 'junaedi@gmail.com', 'Junaedi Ilham', '1997-11-18', 'Bandung', '08234678324', 1, 'konsumen'),
 (4, 'testing', '5f4dcc3b5aa765d61d8327deb882cf99', 'testing@gmail.com', 'testing', '1940-01-02', 'adsfasfdsffasfdsf', '082834783242', 1, 'konsumen'),
 (5, 'testing2', '5f4dcc3b5aa765d61d8327deb882cf99', 'testing2@gmail.com', 'Testing2', '1952-02-11', 'APa aja', '08234729349', 1, 'konsumen'),
-(6, 'nia', '5f4dcc3b5aa765d61d8327deb882cf99', 'nia@gmail.com', 'Nia Kurnia', '1943-04-05', 'Jl. Padasuka', '08236423498', 1, 'konsumen');
+(6, 'nia', '04a481486dd84d7c8bfdfc89d38136a6', 'nia@gmail.com', 'Nia Kurnia', '1943-04-05', 'Jl. Padasuka', '08236423498', 1, 'konsumen'),
+(7, 'dokterdinda', '7ccd1e5df2aa33358a4ca560e553e075', 'dokterdinda@gmail.com', 'dokter Dinda Ayunda', '1996-06-05', 'Bandung', '081312555467', 1, 'dokter');
 
 -- --------------------------------------------------------
 
@@ -331,7 +348,7 @@ ALTER TABLE `produk`
 -- AUTO_INCREMENT for table `forum_konsultasi`
 --
 ALTER TABLE `forum_konsultasi`
-  MODIFY `id_forum` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_forum` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `jasa_pengiriman`
 --
@@ -346,7 +363,7 @@ ALTER TABLE `jenis_produk`
 -- AUTO_INCREMENT for table `konsultasi`
 --
 ALTER TABLE `konsultasi`
-  MODIFY `no_konsultasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `no_konsultasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `paket_pengiriman`
 --
@@ -361,7 +378,7 @@ ALTER TABLE `pemesanan`
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
