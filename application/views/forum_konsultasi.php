@@ -3,13 +3,13 @@
 		<ol class="breadcrumb">
 			<li><a href="<?php echo base_url(); ?>">Beranda</a></li>
 			<li><a href="<?php echo base_url(); ?>konsultasi">Konsultasi</a></li>
-			<li class="active">Forum Konsultasi</li>
+			<li class="active">detail konsultasi</li>
 		</ol>
   </div>
 </div>
 <!---->
 <div class="offers">
-	 <h3>Forum Konsultasi dengan Dokter</h3>
+	 <h3>Tanya Jawab Konsultasi dengan Dokter</h3>
 	 <div class="container">
 	<div class="box-tools pull-left">
 		<a href="<?php echo base_url(); ?>konsultasi"" class="btn btn-success bg-olive btn-xs pull-left" style="margin-top: 3px; margin-left:5px;"><i class="fa fa-plus"></i> Konsultasi</a>

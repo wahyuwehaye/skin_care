@@ -49,20 +49,7 @@
 					</div>
 			  </section>
 				 
-				<section  class="sky-form">
-					<h4><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>Diskon</h4>
-				  <div class="row row1 scroll-pane">
-					  <div class="col col-4">
-							<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>Upto - 10% (20)</label>
-					  </div>
-					  <div class="col col-4">
-							<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>40% - 50% (5)</label>
-							<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>30% - 20% (7)</label>
-							<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>10% - 5% (2)</label>
-							<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Other(50)</label>
-						</div>
-					</div>
-				</section>
+
 				<script type="text/javascript" src="<?php echo base_url() ?>lighting_web/js/jquery-ui.min.js"></script>
 				<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>lighting_web/css/jquery-ui.css">
 				<script type='text/javascript'>//<![CDATA[ 
@@ -80,22 +67,7 @@
 				</script>
 				<!---->
   
-				<section  class="sky-form">
-					<h4><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>Merek</h4>
-					<div class="row row1 scroll-pane">
-						<div class="col col-4">
-							<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>Everyday</label>
-						</div>
-						<div class="col col-4">
-							<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Anchor</label>
-							<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Philips</label>
-							<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Wipro</label>
-							<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Havells</label>
-							<label class="checkbox"><input type="checkbox" name="checkbox" ><i></i>Ferolex</label>
-							<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Gold Medal</label>
-						</div>
-					</div>
-		    </section>				   
+					   
 			</div>				 
 	  </div>
 	</div>
