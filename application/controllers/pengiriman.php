@@ -33,7 +33,7 @@ class Pengiriman extends CI_Controller {
 		}
 
 		// Mengecek apakah user adalah Bagian Administrator atau bukan
-		if($this->session->userdata('grup') != 'pegawai'){
+		if($this->session->userdata('grup') != (('pegawai') || ('manajer'))){
 			redirect('admin/index');
 		}  
 	}

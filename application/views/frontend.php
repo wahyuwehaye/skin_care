@@ -104,6 +104,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</div>
 					<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
 				</a>
+				<a href="<?php echo base_url() ?>konsultasi" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="glyphicon glyphicon-bell"></i>
+              <span class="label label-warning"><?php
+											                  $this->db->select('id');
+											                  $this->db->from('notifikasi');
+											                  // $this->db->where('status','new');
+											                  echo $this->db->count_all_results();
+											                ?></span>
+            </a>
 				<p><a href="javascript:delete_cart();" class="simpleCart_empty">Kosongkan <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></p>
 				<div class="clearfix"> </div>
 			</div>

@@ -54,6 +54,12 @@ class Konsultasi extends CI_Controller {
 	      	'id_konsumen' => $this->session->userdata('id_pengguna'),
 	      	);
 	      $this->konsultasi_m->insert_konsultasi($data);
+        $data1 = array(
+          'nama_notif' => $this->input->post('pertanyaan'),
+          'untuk' => $this->session->userdata('id_pengguna'),
+          'tanggal' => date('Y-m-d H:i:s'),
+          );
+        $this->konsultasi_m->insert_notifikasi($data1);
 	      unset($_SESSION['cart_contents']);
 	      $this->session->set_flashdata('success', 'Konsultasi anda berhasil ditambahkan');
     		redirect('konsultasi');
@@ -72,6 +78,12 @@ class Konsultasi extends CI_Controller {
           'id_user' => $this->session->userdata('id_pengguna'),
           );
         $this->konsultasi_m->insert_forum_konsultasi($data);
+        $data1 = array(
+          'nama_notif' => 'Ada Komentar Baru',
+          'untuk' => $this->session->userdata('id_pengguna'),
+          'tanggal' => date('Y-m-d H:i:s'),
+          );
+        $this->konsultasi_m->insert_notifikasi($data1);
         unset($_SESSION['cart_contents']);
         $this->session->set_flashdata('success', 'komentar anda berhasil ditambahkan');
         redirect('konsultasi/forum/'.$id);

@@ -63,4 +63,9 @@ class Konsultasi_m extends CI_Model
   {
     return $this->db->insert('forum_konsultasi', $values);
   }
+
+  public function insert_notifikasi($values)
+  {
+    return $this->db->insert('notifikasi', $values);
+  }
 }

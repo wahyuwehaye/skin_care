@@ -197,6 +197,12 @@
                   <i class="fa fa-bar-chart"></i> <span>Laporan Penjualan</span>
                 </a>
               </li>
+            <?php } else if($grup == 'manajer') { ?>
+              <li class="treeview  <?php echo ($page == 'Pengiriman') ? 'active' : ''; ?>">
+                <a href="<?php echo base_url() ?>pengiriman">
+                  <i class="fa fa-truck"></i> <span>Kelola Status Pengiriman</span>
+                </a>
+              </li>
             <?php } ?>
           </ul>
         </section>

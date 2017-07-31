@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 24, 2017 at 07:40 AM
+-- Generation Time: Aug 01, 2017 at 04:34 AM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
@@ -73,7 +73,9 @@ INSERT INTO `forum_konsultasi` (`id_forum`, `no_konsultasi`, `tgl_post`, `koment
 (6, 9, '2017-07-24 06:53:12', 'ini baru komentar', 1),
 (7, 9, '2017-07-24 06:56:42', 'a =ku kamu dia', 6),
 (8, 9, '2017-07-24 07:33:25', 'harus sering belajar', 7),
-(9, 10, '2017-07-24 07:35:39', 'ga papa', 7);
+(9, 10, '2017-07-24 07:35:39', 'ga papa', 7),
+(10, 12, '2017-07-24 09:04:14', 'hgddtudu', 6),
+(11, 12, '2017-07-24 09:15:04', 'saya cuma bisa jawab', 7);
 
 -- --------------------------------------------------------
 
@@ -162,7 +164,29 @@ CREATE TABLE `konsultasi` (
 INSERT INTO `konsultasi` (`no_konsultasi`, `tgl_konsultasi`, `pertanyaan`, `diagnosa`, `id_konsumen`) VALUES
 (9, '2017-07-23 20:15:14', 'sa', 'sas', 1),
 (10, '2017-07-23 20:24:41', 'kenapa sih?', 'air itu dingin?', 1),
-(11, '2017-07-23 23:22:01', 'kun anta', 'kaifa haluk', 1);
+(11, '2017-07-23 23:22:01', 'kun anta', 'kaifa haluk', 1),
+(12, '2017-07-24 01:55:10', 'coba aja', 'ini mah nyoba aja ya', 6),
+(13, '2017-07-31 21:31:42', 'apa aja', 'kbksfbaf', 8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifikasi`
+--
+
+CREATE TABLE `notifikasi` (
+  `id` int(10) NOT NULL,
+  `nama_notif` text NOT NULL,
+  `untuk` varchar(100) NOT NULL,
+  `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `notifikasi`
+--
+
+INSERT INTO `notifikasi` (`id`, `nama_notif`, `untuk`, `tanggal`) VALUES
+(1, 'apa aja', '8', '2017-07-31 21:31:42');
 
 -- --------------------------------------------------------
 
@@ -241,7 +265,8 @@ INSERT INTO `pengguna` (`id_pengguna`, `username`, `password`, `email`, `nama_le
 (4, 'testing', '5f4dcc3b5aa765d61d8327deb882cf99', 'testing@gmail.com', 'testing', '1940-01-02', 'adsfasfdsffasfdsf', '082834783242', 1, 'konsumen'),
 (5, 'testing2', '5f4dcc3b5aa765d61d8327deb882cf99', 'testing2@gmail.com', 'Testing2', '1952-02-11', 'APa aja', '08234729349', 1, 'konsumen'),
 (6, 'nia', '04a481486dd84d7c8bfdfc89d38136a6', 'nia@gmail.com', 'Nia Kurnia', '1943-04-05', 'Jl. Padasuka', '08236423498', 1, 'konsumen'),
-(7, 'dokterdinda', '7ccd1e5df2aa33358a4ca560e553e075', 'dokterdinda@gmail.com', 'dokter Dinda Ayunda', '1996-06-05', 'Bandung', '081312555467', 1, 'dokter');
+(7, 'dokterdinda', '7ccd1e5df2aa33358a4ca560e553e075', 'dokterdinda@gmail.com', 'dokter Dinda Ayunda', '1996-06-05', 'Bandung', '081312555467', 1, 'dokter'),
+(8, 'manajer', '69b731ea8f289cf16a192ce78a37b4f0', 'manajer@vaniaskincare.com', 'Manajer Dinda Ayunda', '1996-04-08', 'Bandung', '081312144412', 1, 'manajer');
 
 -- --------------------------------------------------------
 
@@ -317,6 +342,12 @@ ALTER TABLE `konsultasi`
   ADD PRIMARY KEY (`no_konsultasi`);
 
 --
+-- Indexes for table `notifikasi`
+--
+ALTER TABLE `notifikasi`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `paket_pengiriman`
 --
 ALTER TABLE `paket_pengiriman`
@@ -348,7 +379,7 @@ ALTER TABLE `produk`
 -- AUTO_INCREMENT for table `forum_konsultasi`
 --
 ALTER TABLE `forum_konsultasi`
-  MODIFY `id_forum` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_forum` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `jasa_pengiriman`
 --
@@ -363,7 +394,12 @@ ALTER TABLE `jenis_produk`
 -- AUTO_INCREMENT for table `konsultasi`
 --
 ALTER TABLE `konsultasi`
-  MODIFY `no_konsultasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `no_konsultasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT for table `notifikasi`
+--
+ALTER TABLE `notifikasi`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `paket_pengiriman`
 --
@@ -378,7 +414,7 @@ ALTER TABLE `pemesanan`
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
